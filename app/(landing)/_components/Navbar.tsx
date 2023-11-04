@@ -33,12 +33,20 @@ const Navbar = () => {
 
         {!isAuthenticated && !isLoading && (
           <>
-            <SignInButton mode="modal">
+            <SignInButton
+              afterSignInUrl="/documents"
+              afterSignUpUrl="/documents"
+              mode="modal"
+            >
               <Button variant={"ghost"} size={"sm"}>
                 Login
               </Button>
             </SignInButton>
-            <SignInButton mode="modal">
+            <SignInButton
+              afterSignInUrl="/documents"
+              afterSignUpUrl="/documents"
+              mode="modal"
+            >
               <Button size={"sm"}>Get SoftNotes Free</Button>
             </SignInButton>
           </>

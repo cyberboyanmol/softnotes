@@ -34,7 +34,7 @@ const Heading = () => {
         </Button>
       )}
       {!isAuthenticated && !isLoading && (
-        <SignInButton mode="modal">
+        <SignInButton afterSignInUrl="/documents" afterSignUpUrl="/documents"  mode="modal">
           <Button className="font-bold">
             Get SoftNotes Free
             <ArrowRight className="h-4 w-4 ml-2" />
