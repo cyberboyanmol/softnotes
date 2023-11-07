@@ -27,6 +27,7 @@ import {
   PopoverContent,
 } from "@/components/ui/popover";
 import TrashBox from "./trash-box";
+import { useModalStore } from "@/hooks/use-modal-store";
 
 export const Navigation = () => {
   const router = useRouter();
@@ -38,7 +39,7 @@ export const Navigation = () => {
   const navbarRef = useRef<ElementRef<"div">>(null);
   const [isResetting, setIsResetting] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(isMobile);
-
+  const { onOpen } = useModalStore();
   const create = useMutation(api.documents.create);
 
   const onCreateDocument = () => {
@@ -149,8 +150,17 @@ export const Navigation = () => {
         </div>
         <div>
           <UserItem />
-          <Item onClick={() => {}} icon={SearchIcon} label="Search" isSearch />
-          <Item onClick={() => {}} icon={Settings} label="Settings" />
+          <Item
+            onClick={() => onOpen("search")}
+            icon={SearchIcon}
+            label="Search"
+            isSearch
+          />
+          <Item
+            onClick={() => onOpen("settings")}
+            icon={Settings}
+            label="Settings"
+          />
           <Item onClick={onCreateDocument} label="New Page" icon={PlusCircle} />
         </div>
         <div className="mt-4">
