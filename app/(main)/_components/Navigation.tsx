@@ -6,28 +6,51 @@ import {
   Plus,
   PlusCircle,
   Search,
+  SearchIcon,
   Settings,
   Trash,
 } from "lucide-react";
 import { useParams, usePathname, useRouter } from "next/navigation";
 import { ElementRef, useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "usehooks-ts";
-import { useMutation } from "convex/react";
+import { useMutation, useQuery } from "convex/react";
 
 import { cn } from "@/lib/utils";
 import UserItem from "./User-Item";
+import { api } from "@/convex/_generated/api";
+import Item from "./Item";
+import { toast } from "sonner";
+import DocumentList from "./document-list";
+import {
+  PopoverTrigger,
+  Popover,
+  PopoverContent,
+} from "@/components/ui/popover";
+import TrashBox from "./trash-box";
 
 export const Navigation = () => {
   const router = useRouter();
   const params = useParams();
   const pathname = usePathname();
   const isMobile = useMediaQuery("(max-width: 768px)");
-
   const isResizingRef = useRef(false);
   const sidebarRef = useRef<ElementRef<"aside">>(null);
   const navbarRef = useRef<ElementRef<"div">>(null);
   const [isResetting, setIsResetting] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(isMobile);
+
+  const create = useMutation(api.documents.create);
+
+  const onCreateDocument = () => {
+    const promise = create({
+      title: "Untitled",
+    });
+    toast.promise(promise, {
+      loading: "Creating a new Note",
+      success: "New Note Created",
+      error: "Failed to create new Note.",
+    });
+  };
 
   useEffect(() => {
     if (isMobile) {
@@ -126,8 +149,25 @@ export const Navigation = () => {
         </div>
         <div>
           <UserItem />
+          <Item onClick={() => {}} icon={SearchIcon} label="Search" isSearch />
+          <Item onClick={() => {}} icon={Settings} label="Settings" />
+          <Item onClick={onCreateDocument} label="New Page" icon={PlusCircle} />
         </div>
-        <div className="mt-4">documents</div>
+        <div className="mt-4">
+          <DocumentList />
+          <Item onClick={onCreateDocument} label="Add Page" icon={Plus} />
+          <Popover>
+            <PopoverTrigger className="w-full mt-4">
+              <Item label="Trash" icon={Trash} />
+            </PopoverTrigger>
+            <PopoverContent
+              className="p-0 w-72"
+              side={isMobile ? "bottom" : "right"}
+            >
+              <TrashBox />
+            </PopoverContent>
+          </Popover>
+        </div>
         <div
           onMouseDown={handleMouseDown}
           onClick={resetWidth}

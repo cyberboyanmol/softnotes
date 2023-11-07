@@ -6,12 +6,23 @@ import { Button } from "@/components/ui/button";
 import { PlusCircle } from "lucide-react";
 import { useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
+import { toast } from "sonner";
 
 const DocumentPage = () => {
   const { user } = useUser();
 
-  const handleCreate = useMutation(api);
+  const create = useMutation(api.documents.create);
 
+  const onCreateDocument = () => {
+    const promise = create({
+      title: "Untitled",
+    });
+    toast.promise(promise, {
+      loading: "Creating a new Note",
+      success: "New Note Created",
+      error: "Failed to create new Note.",
+    });
+  };
   return (
     <div className="h-full flex flex-col items-center justify-center space-y-4">
       <Image
@@ -32,7 +43,7 @@ const DocumentPage = () => {
         {" "}
         Welcome to {user?.firstName}&apos;s SoftNotes
       </h2>
-      <Button>
+      <Button onClick={onCreateDocument}>
         <PlusCircle className="h-4 w-4 mr-2" />
         Create a note
       </Button>

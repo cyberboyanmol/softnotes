@@ -35,18 +35,20 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <ConvexClientProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-            storageKey="jotion-theme-2"
-          >
-            <Toaster position="top-right" />
-            {children}
-          </ThemeProvider>
-        </ConvexClientProvider>
+        <main className="h-full dark:bg-[#1F1F1F]">
+          <ConvexClientProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+              storageKey="jotion-theme-2"
+            >
+              <Toaster position="top-right" />
+              {children}
+            </ThemeProvider>
+          </ConvexClientProvider>
+        </main>
       </body>
     </html>
   );
