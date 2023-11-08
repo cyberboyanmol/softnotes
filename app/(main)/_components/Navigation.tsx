@@ -163,11 +163,11 @@ export const Navigation = () => {
           />
           <Item onClick={onCreateDocument} label="New Page" icon={PlusCircle} />
         </div>
-        <div className="mt-4">
+        <div className="">
           <DocumentList />
           <Item onClick={onCreateDocument} label="Add Page" icon={Plus} />
           <Popover>
-            <PopoverTrigger className="w-full mt-4">
+            <PopoverTrigger className="w-full ">
               <Item label="Trash" icon={Trash} />
             </PopoverTrigger>
             <PopoverContent
