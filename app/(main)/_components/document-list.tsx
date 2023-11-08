@@ -70,6 +70,7 @@ const DocumentList = ({
             id={document._id}
             onClick={() => onRedirect(document._id)}
             icon={FileIcon}
+            documentIcon={document.icon}
             label={document.title}
             active={params.documentId === document._id}
             level={level}

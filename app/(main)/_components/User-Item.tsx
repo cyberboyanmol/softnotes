@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 import { ChevronsLeftRight } from "lucide-react";
-import { SignOutButton, useUser } from "@clerk/clerk-react";
+import { SignOutButton, UserButton, useUser } from "@clerk/clerk-react";
 const UserItem = () => {
   const { user } = useUser();
 
@@ -57,6 +57,7 @@ const UserItem = () => {
           </div>
         </div>
         <DropdownMenuSeparator />
+
         <DropdownMenuItem
           asChild
           className="w-full text-muted-foreground cursor-pointer "

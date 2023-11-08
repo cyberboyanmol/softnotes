@@ -6,7 +6,7 @@ import { ConvexClientProvider } from "@/components/providers/convex-provider";
 import { Toaster } from "sonner";
 import "./globals.css";
 import ModalProvider from "@/components/providers/modal-provider";
-
+import { EdgeStoreProvider } from "@/lib/edgestore";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -38,17 +38,19 @@ export default function RootLayout({
       <body className={inter.className}>
         <main className="h-full dark:bg-[#1F1F1F]">
           <ConvexClientProvider>
-            <ThemeProvider
-              attribute="class"
-              defaultTheme="system"
-              enableSystem
-              disableTransitionOnChange
-              storageKey="jotion-theme-2"
-            >
-              <Toaster position="top-right" />
-              <ModalProvider />
-              {children}
-            </ThemeProvider>
+            <EdgeStoreProvider>
+              <ThemeProvider
+                attribute="class"
+                defaultTheme="system"
+                enableSystem
+                disableTransitionOnChange
+                storageKey="jotion-theme-2"
+              >
+                <Toaster position="top-right" />
+                <ModalProvider />
+                {children}
+              </ThemeProvider>
+            </EdgeStoreProvider>
           </ConvexClientProvider>
         </main>
       </body>

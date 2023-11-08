@@ -63,7 +63,9 @@ const Title = ({ initialData }: TitleProps) => {
           className="font-normal h-auto p-1"
           onClick={enableInput}
         >
-          <span className=" truncate ">{initialData.title}</span>
+          <span className="truncate  w-48 md:w-72 text-start ">
+            {initialData.title}
+          </span>
         </Button>
       )}
     </div>
