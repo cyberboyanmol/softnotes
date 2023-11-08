@@ -14,7 +14,7 @@ import { Skeleton } from "./ui/skeleton";
 
 interface CoverImageProps {
   url?: string;
-  preview?: string;
+  preview?: boolean;
 }
 
 const CoverImage = ({ url, preview }: CoverImageProps) => {
