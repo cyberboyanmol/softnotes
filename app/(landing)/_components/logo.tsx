@@ -15,15 +15,15 @@ const Logo = () => {
         className="dark:hidden"
         alt="logo"
         src={"/logo.svg"}
-        width={40}
-        height={40}
+        width={30}
+        height={30}
       />
       <Image
         className="hidden dark:block"
         alt="logo"
         src={"/logo-dark.svg"}
-        width={40}
-        height={40}
+        width={30}
+        height={30}
       />
       <p className={cn("font-semibold", font.className)}>SoftNotes</p>
     </div>

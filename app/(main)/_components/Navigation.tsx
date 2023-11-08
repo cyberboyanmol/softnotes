@@ -28,7 +28,7 @@ import {
 } from "@/components/ui/popover";
 import TrashBox from "./trash-box";
 import { useModalStore } from "@/hooks/use-modal-store";
-
+import Navbar from "./navbar";
 export const Navigation = () => {
   const router = useRouter();
   const params = useParams();
@@ -193,9 +193,10 @@ export const Navigation = () => {
         )}
       >
         {!!params.documentId ? (
-          <></>
+          <>
+            <Navbar isCollapsed={isCollapsed} onResetWidth={resetWidth} />
+          </>
         ) : (
-          //   <Navbar isCollapsed={isCollapsed} onResetWidth={resetWidth} />
           <nav className="bg-transparent px-3 py-2 w-full">
             {isCollapsed && (
               <MenuIcon
